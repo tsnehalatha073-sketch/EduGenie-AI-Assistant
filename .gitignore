@@ -1,0 +1,5 @@
+.env
+.venv/
+edugenie/.venv/
+__pycache__/
+*.pyc
