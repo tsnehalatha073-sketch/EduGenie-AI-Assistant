@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EduGenie - AI Learning Assistant</title>
+<link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+
+<header>
+  <h1>Welcome to EduGenie</h1>
+  <p>Your personal AI tutor for learning support</p>
+  {% if demo_mode %}
+    <div class="badge demo">Demo Mode &mdash; add GOOGLE_API_KEY in .env for live AI</div>
+  {% else %}
+    <div class="badge live">Live &mdash; powered by {{ model }}</div>
+  {% endif %}
+</header>
+
+<main class="container">
+
+  <section class="card">
+    <h3>Ask EduGenie a Question</h3>
+    <form id="qaForm">
+      <div class="input-row">
+        <input type="text" id="question" placeholder="Which is the largest ocean?" required />
+        <button type="submit">Get Answer</button>
+      </div>
+    </form>
+    <div id="qaResult" class="output"></div>
+  </section>
+
+  <section class="card">
+    <h3>Need an Explanation?</h3>
+    <form id="explainForm">
+      <div class="input-row">
+        <input type="text" id="topic" placeholder="Photosynthesis" required />
+        <button type="submit">Explain</button>
+      </div>
+    </form>
+    <div id="explainResult" class="output"></div>
+  </section>
+
+  <section class="card">
+    <h3>Summarize a Paragraph</h3>
+    <form id="summaryForm">
+      <textarea id="summaryText" rows="4" placeholder="Paste a long passage here to summarize..." required></textarea>
+      <button type="submit" class="full">Summarize</button>
+    </form>
+    <div id="summaryResult" class="output"></div>
+  </section>
+
+  <section class="card">
+    <h3>Generate a Quiz</h3>
+    <form id="quizForm">
+      <div class="input-row">
+        <input type="text" id="quizText" placeholder="Pythagoras theorem" required />
+        <button type="submit">Generate Quiz</button>
+      </div>
+    </form>
+    <div id="quizResult" class="output"></div>
+  </section>
+
+  <section class="card">
+    <h3>Get Learning Recommendations</h3>
+    <form id="learnForm">
+      <div class="input-row">
+        <input type="text" id="learnTopic" placeholder="SQL" required />
+        <button type="submit">Get Recommendations</button>
+      </div>
+    </form>
+    <div id="learnResult" class="output"></div>
+  </section>
+
+</main>
+
+<footer>EduGenie &bull; FastAPI + Google Gemini</footer>
+
+<script src="/static/script.js"></script>
+</body>
+</html>
