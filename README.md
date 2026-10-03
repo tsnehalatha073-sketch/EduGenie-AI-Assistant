@@ -1,59 +1,69 @@
 # EduGenie-AI-Assistant
 Google Gemini Powered Learning Assistant
+
 EduGenie
+
 EduGenie is a lightweight, browser-based educational assistant that uses Google Gemini to help learners ask questions, understand concepts, summarize educational passages, generate multiple-choice quizzes, and create structured learning paths. It is intended for students and self-learners and is built with a FastAPI backend, a Jinja2-rendered HTML interface, vanilla JavaScript, responsive CSS, and the Google Gen AI Python SDK.
+
 Features
 Core Features
-Answer academic and general-knowledge questions.
-Explain concepts in beginner-friendly language.
-Summarize educational passages.
-Generate three multiple-choice questions from a topic or passage.
-Display four options for every generated quiz question.
-Check quiz answers directly in the browser.
-Generate structured beginner-to-advanced learning paths.
+ .Answer academic and general-knowledge questions.
+.Explain concepts in beginner-friendly language.
+.Summarize educational passages.
+.Generate three multiple-choice questions from a topic or passage.
+.Display four options for every generated quiz question.
+.Check quiz answers directly in the browser.
+.Generate structured beginner-to-advanced learning paths.
+
 AI Features
-Uses Google Gemini through the google-genai Python package.
-Uses task-specific prompts for:
-Question answering
-Concept explanation
-Summarization
-Quiz generation
-Learning-path generation
-Supports model selection through the GEMINI_MODEL environment variable.
-Requests structured JSON for quiz generation.
-Validates generated quiz data before returning it to the frontend.
-Handles missing keys, invalid keys, unavailable models, empty responses, and API quota errors.
+.Uses Google Gemini through the google-genai Python package.
+.Uses task-specific prompts for:
+.Question answering
+.Concept explanation
+.Summarization
+.Quiz generation
+.Learning-path generation
+.Supports model selection through the GEMINI_MODEL environment variable.
+.Requests structured JSON for quiz generation.
+.Validates generated quiz data before returning it to the frontend.
+.Handles missing keys, invalid keys, unavailable models, empty responses, and API quota errors.
+
 Backend Features
-FastAPI application with JSON REST endpoints.
-Pydantic request validation.
-Modular Python files for each learning feature.
-Jinja2 template rendering.
-Static-file serving for CSS and JavaScript.
-Health-check endpoint.
-Automatically generated OpenAPI and Swagger UI documentation.
-Centralized Gemini API configuration.
+.FastAPI application with JSON REST endpoints.
+.Pydantic request validation.
+.Modular Python files for each learning feature.
+.Jinja2 template rendering.
+.Static-file serving for CSS and JavaScript.
+.Health-check endpoint.
+.Automatically generated OpenAPI and Swagger UI documentation.
+.Centralized Gemini API configuration.
+
 Frontend Features
-Responsive HTML and CSS interface.
-Tab-based navigation between learning tools.
-Asynchronous requests using the browser Fetch API.
-Loading, error, and result states.
-Interactive quiz answer checking.
-Submit-button disabling while requests are in progress.
-Mobile-friendly layout.
+.Responsive HTML and CSS interface.
+.Tab-based navigation between learning tools.
+.Asynchronous requests using the browser Fetch API.
+.Loading, error, and result states.
+.Interactive quiz answer checking.
+.Submit-button disabling while requests are in progress.
+.Mobile-friendly layout.
+
 Security and Configuration
-Gemini credentials are loaded from environment variables.
-The API key does not need to be placed in source code.
+.Gemini credentials are loaded from environment variables.
+.The API key does not need to be placed in source code.
 .env can be excluded from Git through .gitignore.
-User input is validated by Pydantic before feature modules process it.
-Generated quiz data is structurally validated before being sent to the browser.
+.User input is validated by Pydantic before feature modules process it.
+.Generated quiz data is structurally validated before being sent to the browser.
+
 Data and Database
-No database is implemented.
-No user information, generated content, or learning progress is persisted.
-Application state exists only for the duration of each request and browser session.
+.No database is implemented.
+.No user information, generated content, or learning progress is persisted.
+.Application state exists only for the duration of each request and browser session.
+
 Testing
-A health-check endpoint is available for basic runtime verification.
-FastAPI's interactive Swagger UI can be used for manual endpoint testing.
-No automated test suite is currently included.
+.A health-check endpoint is available for basic runtime verification.
+.FastAPI's interactive Swagger UI can be used for manual endpoint testing.
+.No automated test suite is currently included.
+
 Technology Stack
 Category	Technology
 Language	Python, JavaScript, HTML, CSS
@@ -69,6 +79,7 @@ APIs	Internal FastAPI REST API; external Google Gemini API
 Testing	Manual testing through the web interface, /health, and Swagger UI
 Deployment	Local Uvicorn execution; production platform not specified
 Configuration	python-dotenv and .env environment variables
+
 Project Architecture
 EduGenie follows a small modular web-application architecture.
 
@@ -84,11 +95,12 @@ main.py creates the FastAPI application, mounts static assets, configures Jinja2
 
 Each educational feature is implemented in a separate Python module:
 
-qna.py
-explanation_module.py
-summary_module.py
-quiz_module.py
-learning_path.py
+.qna.py
+.explanation_module.py
+.summary_module.py
+.quiz_module.py
+.learning_path.py
+
 AI Integration
 config.py loads the API key and model name from .env, creates the Google Gen AI client, and provides the shared text-generation function used by the feature modules.
 
@@ -105,6 +117,7 @@ config.py sends the prompt to the configured Gemini model.
 The backend returns the result as JSON.
 JavaScript displays the response in the browser.
 For quizzes, JavaScript checks selected answers against the validated answer returned by the backend.
+
 flowchart TD
     A[User] --> B[Jinja2 HTML Interface]
     B --> C[Vanilla JavaScript / Fetch API]
@@ -130,8 +143,9 @@ flowchart TD
 
     H --> M[JSON Parsing and Quiz Validation]
     M --> D
-    Project Structure
-    EduGenie/
+
+project structure
+EduGenie/
 ├── static/
 │   ├── script.js              # Fetch requests and frontend interactivity
 │   └── style.css              # Responsive application styling
@@ -147,10 +161,10 @@ flowchart TD
 ├── quiz_module.py             # Quiz generation, parsing, and validation
 ├── requirements.txt           # Python dependencies
 └── summary_module.py          # Summarization logic
-If run.py is present in a local copy, it is an optional launcher. The documented and directly supported startup command is:
-Bash
 
+bash
 python -m uvicorn main:app
+
 Prerequisites
 Before installing EduGenie, ensure that the following are available:
 
@@ -194,11 +208,13 @@ PowerShell
 
 Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\.venv\Scripts\Activate.ps1
+
 Windows Command Prompt
 cmd
 
 .venv\Scripts\activate.bat
 Activation is optional. Commands can also be run directly through the virtual environment's Python executable.
+
 4. Install dependencies
 Bash
 
@@ -216,7 +232,8 @@ Create a .env file in the project root, beside main.py.
 env
 
 GOOGLE_API_KEY=YOUR_GEMINI_API_KEY
-GEMINI_MODEL=gemini-2.5-flash
+GEMINI_MODEL=gemini-3.8-flash
+
 Variables
 Variable	Required	Description
 GOOGLE_API_KEY	Yes	API key used to access Google Gemini
@@ -257,6 +274,7 @@ Bash
 
 python -m uvicorn main:app --reload
 On Windows, without activating the virtual environment:
+
 
 PowerShell
 
